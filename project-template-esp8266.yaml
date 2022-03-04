@@ -1,6 +1,6 @@
 # These substitutions allow the end user to override certain values
 substitutions:
-  name: "project-template"
+  name: "eco2-sensor"
 
 esphome:
   name: "${name}"
@@ -11,7 +11,7 @@ esphome:
   # This will allow for (future) project identification,
   # configuration and updates.
   project:
-    name: esphome.project-template
+    name: neoe.eco2-sensor
     version: "1.0"
 
 esp8266:
@@ -28,7 +28,7 @@ ota:
 
 # This should point to the public location of this yaml file.
 dashboard_import:
-  package_import_url: github://esphome/esphome-project-template/project-template-esp8266.yaml@main
+  package_import_url: github://NEOE-IO/eco2-sensor-mit-oled-display/project-template-esp8266.yaml@main
 
 wifi:
   # Set up a wifi access point using the device name above
@@ -50,3 +50,43 @@ captive_portal:
 # Sets up the improv via serial client for Wi-Fi provisioning.
 # Handy if your device has a usb port for the user to add credentials when they first get it.
 improv_serial:
+
+
+# NEOE specific additions
+sensor:
+  - platform: sgp30
+    eco2:
+      id: eco2
+      name: "eCO2"
+      accuracy_decimals: 0
+      filters:
+      - sliding_window_moving_average:
+          window_size: 60
+          send_every: 60
+    tvoc:
+      id: tvoc
+      name: "TVOC"
+      accuracy_decimals: 0
+      filters:
+      - sliding_window_moving_average:
+          window_size: 60
+          send_every: 60
+    store_baseline: yes
+    update_interval: 1s
+
+font:
+  - file: 'OpenSans-Regular.ttf'
+    id: font1
+    size: 12
+  - file: 'OpenSans-Regular.ttf'
+    id: font2
+    size: 36
+    
+display:
+  - platform: ssd1306_i2c
+    model: "SH1106 128x64"
+    lambda: |-
+      if (id(eco2).has_state()) {
+        it.print(64, 0, id(font1), TextAlign::TOP_CENTER , "eCO2 (ppm)");
+        it.printf(64, 64, id(font2), TextAlign::BOTTOM_CENTER , "%.0f", id(eco2).state);
+      }
