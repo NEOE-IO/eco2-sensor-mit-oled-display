@@ -53,6 +53,8 @@ improv_serial:
 
 
 # NEOE specific additions
+i2c:
+
 sensor:
   - platform: sgp30
     eco2:
