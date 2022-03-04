@@ -1,10 +1,10 @@
-# About
+# Über
 
-Add some information about your project here.
+Das GY-SGP30 eCO2- und TVOC-Sensormodul hilft uns bei diesem Bausatz, die Raumluftqualität zu überwachen. Die ermittelten eCO2-Messwerte werden direkt über ein 1,3 Zoll OLED-Display ausgegeben. Die Integration mit dem Smarthome-System erfolgt via ESPHome. Weitere Informationen siehe: <a href="https://www.neoe.io/1004">www.neoe.io/1004</a>
 
 # Installation
 
-You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
+Über die folgende Schaltfläche kann die bereits vorbereitete Firmware einfach über USB aus dem Browser installiert werden.
 
 <esp-web-install-button manifest="./manifest.json"></esp-web-install-button>
 
