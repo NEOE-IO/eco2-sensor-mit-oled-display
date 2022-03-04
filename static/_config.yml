@@ -1,4 +1,4 @@
 # CHANGEME: Set these variable to your liking
-title: ESPHome Project Template
-description: Powered by ESPHome and ESP Web Tools
+title: eCO2-Sensor mit OLED-Display
+description: IoT eCO2-Sensor mit OLED-Display mit OLED-Display. Smarthome-Anbindung via ESPHome / MQTT.
 theme: jekyll-theme-slate
